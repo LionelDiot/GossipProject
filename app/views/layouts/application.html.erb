@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gossip Project</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+  <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark"  >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="">
+        <div class="container">
+          <i class="bi bi-poo"></i>
+          <%= link_to "Home" , home_path , class: "navbar-brand" %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item active">
+                <%= link_to "Home" , home_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Team" , team_path , class: "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Contact" , contact_path , class: "nav-link"%>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    </header>
+    
+    <%= yield %>
+  </body>
+</html>

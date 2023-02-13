@@ -1,0 +1,4 @@
+<h1><%= @gossip.title %></h1>
+<p><%= @gossip.content %></p>
+<p>Derniere modification/création: <%= @gossip.updated_at %></p>
+<p>Par: <%= link_to @gossip.user.first_name + " " +@gossip.user.last_name, "/user/#{@gossip.user.id}" %></p>
