@@ -2,9 +2,9 @@
 
 ## Bienvenue sur mon premier Gossip Project complet.
 
-###bundle install and rails s avant d'aller sur localhost 3000 devrait suffire !
+Bundle install and rails s avant d'aller sur localhost 3000 devrait suffire !
 
-Les choses à retenir:
+Les prérequis sont:
 
 * Ruby 3.0.0
 
@@ -13,5 +13,4 @@ Les choses à retenir:
 * Rails 7
 
 * Postgre
-
 
