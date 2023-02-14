@@ -23,6 +23,15 @@ ActiveRecord::Base.connection.reset_pk_sequence!('tags')
     zip_code: Faker::Address.zip_code
   )
 end
+#creation d'un utilisateur par default pour les gossips générés onlines
+default_user = User.create!(
+  first_name: "Formulaire",
+  last_name: "Entrée manuellement",
+  description: "Ce profil est créé dans l'attente d'utilisateur réel sur mon site pour associer mes gossips généré manuellement à un utilisateur",
+  email: "test123@test.com",
+  age: Faker::Number.between(from: 18, to: 100),
+  city: City.all.sample
+)
 
 10.times do 
   user = User.create!(
@@ -37,15 +46,15 @@ end
 
 20.times do 
   gossip = Gossip.create!(
-    title: Faker::Lorem.sentence,
+    title: Faker::Lorem.characters(number: rand(3..14)),
     content: Faker::Lorem.paragraph,
-    user: User.all.sample
+    user: User.where.not(id: 1).sample
   )
 end
 
 10.times do
   tag = Tag.create!(
-    title: Faker::Lorem.sentence
+    title: Faker::Lorem.characters(number: rand(3..14))
   )
 end
 

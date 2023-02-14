@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/team', to: 'static_pages#team'
   get '/welcome/:name', to: 'welcome#show'
-  get 'gossip/:id', to: 'gossip#show'
+  get 'gossip/:id', to: 'gossip#show', as: 'gossip'
   get 'user/:id',  to: 'user#show'
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :gossips, only: [:new, :create]
+
+  root 'static_pages#home'
+  
 end
