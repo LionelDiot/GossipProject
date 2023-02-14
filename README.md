@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Bienvenue sur mon premier Gossip Project complet.
 
-Things you may want to cover:
+Bundle install and rails s avant d'aller sur localhost 3000 devrait suffire !
 
-* Ruby version
+Les prérequis sont:
 
-* System dependencies
+* Ruby 3.0.0
 
-* Configuration
+* Faker
 
-* Database creation
+* Rails 7
 
-* Database initialization
+* Postgre
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
