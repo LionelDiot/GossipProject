@@ -17,6 +17,16 @@ ActiveRecord::Base.connection.reset_pk_sequence!('cities')
 Tag.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('tags')
 
+
+
+def generate_title
+  title = Faker::Movie.title
+  while title.length < 3 || title.length > 14
+    title = Faker::Movie.title
+  end
+  title
+end
+
 10.times do 
   city = City.create!(
     name: Faker::Address.city,
@@ -37,7 +47,7 @@ default_user = User.create!(
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    description: Faker::Lorem.paragraph,
+    description: Faker::Hipster.paragraph,
     email: Faker::Internet.email,
     age: Faker::Number.between(from: 18, to: 100),
     city: City.all.sample
@@ -46,15 +56,24 @@ end
 
 20.times do 
   gossip = Gossip.create!(
-    title: Faker::Lorem.characters(number: rand(3..14)),
-    content: Faker::Lorem.paragraph,
+    title: generate_title,
+    content: Faker::ChuckNorris.fact,
     user: User.where.not(id: 1).sample
+  )
+end
+
+
+50.times do 
+  comment = Comment.create!(
+
+    content: Faker::Quote.famous_last_words,
+    gossip: Gossip.all.sample
   )
 end
 
 10.times do
   tag = Tag.create!(
-    title: Faker::Lorem.characters(number: rand(3..14))
+    title: generate_title
   )
 end
 

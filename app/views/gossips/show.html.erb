@@ -1,2 +1,45 @@
-<h1>Gossips#show</h1>
-<p>Find me in app/views/gossips/show.html.erb</p>
+<div class="container">
+  <h1>Bienvenue sur la page du gossip : <%= @gossip.title %></h1>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="rounded border border-2 p-2" style="width: fit-content; opacity: 0.90; background-color: #862ce6">
+        <p><%= @gossip.content %></p>
+        <p>Derniere modification le <%= @gossip.updated_at.strftime('%d %B %Y à %Hh%M') %></p>
+        <p>Par : <%= link_to @gossip.user.first_name + " " +@gossip.user.last_name, "/user/#{@gossip.user.id}", style: ' color: white;'%></p>
+        <p> Dans la ville de : <%= link_to @gossip.user.city.name, "/cities/#{@gossip.user.city.id}", style: ' color: white;'%> </p>
+      </div>
+      <div class="container ">
+        <h3 class="d-flex">
+          <%= link_to "Modifier le Gossip", edit_gossip_path(@gossip), class: "btn btn-primary text-center m-3 mr-2 border" %>
+          <%= button_to "Supprimer le Gossip", gossip_path(@gossip), method: :delete, class: "btn btn-danger text-center m-3 mr-2 border", onclick: "return confirm('Êtes-vous sûr de vouloir supprimer ce gossip ?');" %>
+        </h3>
+      </div>
+    </div> 
+    <div class="col-md-4">
+      <%= form_tag gossip_comments_path(@gossip), method: :post, style: "max-width: 600px;" do %>
+      <%= label_tag :content, "Un commentaire annonyme ?" %>
+      <%= text_area_tag :content, nil, rows: 2, class: "form-control mb-3" %>
+      <%= submit_tag "Confirmer", class: "btn btn-primary text-center m-3 mr-2 border" %>
+      <% end %>
+    </div>
+  </div>
+  <hr class="my-5">
+  <h1 class="text-center">Les commentaires :</h1>
+  <div class="row justify-content-center">
+    <% @comments.each_with_index do |comment, index| %>
+    <div class="card rounded border border-2 p-2 col-md-3 mx-3 my-3" style="opacity: 0.90; background-color: #862ce6">
+      <div class="card-body text-center ">
+        <p class="card-text"><%= comment.content %></p>
+        <div class="d-inline-block">
+          <%= link_to 'Modifier', edit_gossip_comment_path(@gossip, comment), class: 'btn btn-primary me-2 text-center m-3 mr-2 border' %>
+          <%= link_to 'Supprimer', [comment.gossip, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger text-center m-3 mr-2 border' %>
+        </div>
+      </div>
+    </div>
+    <% if (index + 1) % 3 == 0 %>
+      </div><div class="row justify-content-center">
+    <% end %>
+  <% end %>
+  </div>
+</div>
+  

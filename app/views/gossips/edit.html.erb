@@ -1,0 +1,19 @@
+<div class="container">
+ 
+  <h1>Modifie ici le Gossip : </h1>
+<%= form_for @gossip, url: gossip_path(@gossip), method: :patch do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "Titre", class: "m-2"%>
+    <%= f.text_field :title, class: "form-control  opacity-75 ",  required: true, minlength: 3, maxlength: 14, style: "width: 190px"  %>
+  </div>
+
+  <div class="form-group ">
+    <%= f.label :content, "Le Gossip", class: "m-2" %>
+    <%= f.text_area :content, class: "form-control opacity-75 ",  required: true, style: "width: 1000px" %>
+  </div>
+
+  <%= f.submit "Enregistrer les modifications", class: "btn btn-primary mt-4" %>
+<% end %>
+
+
+

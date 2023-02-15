@@ -1,12 +1,23 @@
 <div class="container">
-  <h1>Bienvenue sur la page d'accueil, visiteur !</h1>
-  <%= link_to "Créer un nouveau Gossip", new_gossip_path, class: "btn btn-primary" %>
-  <h2>Gossips existants :</h2>
+
+  <h1 class="text-center">Bienvenue sur la page d'accueil, visiteur !</h1>
+  <div class="container text-center">
+    <h3><%= link_to "Créer un nouveau Gossip", new_gossip_path, class: "btn btn-primary text-center" %></h3>
+  </div>
+  <hr class="my-5">
+<div class="container">
+  <div class="d-flex justify-content-center ">
+    <h2 class="rounded border border-2 p-2" style="width: fit-content; opacity: 0.90; background-color: #862ce6">Voici la liste de tous les gossips existants :</h2>
+  </div>
+</div>
+
+  <br>
   <% @gossips.each_with_index do |gossip, index| %>
-    <div class="card">
+    <div class="card opacity-75 m-2 border border-dark">
       <div class="card-body">
-        <h3 class="card-title"><%= link_to gossip.title, gossip_path(gossip), style: 'text-decoration:none'%></h3>
-        <p class="card-text">Derniere modification le : <%= gossip.updated_at %>, par <%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
+        <h3 class="card-title underline-on-hover"><%= link_to gossip.title, gossip_path(gossip), style: 'text-decoration:none; color:#5c609b; '%></h3>
+        <p class="card-text" style=' color:black '>Derniere modification le <%= gossip.updated_at.strftime('%d %B %Y à %Hh%M') %>, par <%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
+
       </div>
     </div>
   <% end %>
