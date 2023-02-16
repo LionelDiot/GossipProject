@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
+
 JoinTableGossipTag.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('jointablegossiptags')
 Gossip.destroy_all
@@ -16,8 +17,8 @@ City.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('cities')
 Tag.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('tags')
-
-
+Like.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('likes')
 
 def generate_title
   title = Faker::Movie.title
