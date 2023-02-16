@@ -24,21 +24,22 @@ class UsersController < ApplicationController
     end
   end
   def new
-
+    @user = User.new
   end
   def create
 
     @user = User.new(user_params)
     
-    binding.pry
     
+
     if @user.save
-      log_in(@user)
+      log_in @user
       flash[:success] = " Ton profil a bien été créé !"
       redirect_to home_path
       
     else
       flash[:danger] = "Erreur : ton formulaire n'etait pas correct. Essaie encore"
+      logger.error @user.errors.inspect
       render 'new'
     end
   end
