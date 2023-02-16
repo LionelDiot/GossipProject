@@ -40,7 +40,8 @@ default_user = User.create!(
   description: "Ce profil est créé dans l'attente d'utilisateur réel sur mon site pour associer mes gossips généré manuellement à un utilisateur",
   email: "test123@test.com",
   age: Faker::Number.between(from: 18, to: 100),
-  city: City.all.sample
+  city: City.all.sample,
+  password: "123456"
 )
 
 10.times do 
@@ -50,7 +51,8 @@ default_user = User.create!(
     description: Faker::Hipster.paragraph,
     email: Faker::Internet.email,
     age: Faker::Number.between(from: 18, to: 100),
-    city: City.all.sample
+    city: City.all.sample,
+    password: "123456"
   )
 end
 

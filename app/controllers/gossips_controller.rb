@@ -1,12 +1,14 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create, :destroy, :edit, :update]
   def create
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.find(id=1))
-    puts @gossip.inspect
+    
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user: current_user)
+    
     
     if @gossip.save
       flash[:success] = " Ton Gossip a bien été ajouté !"
       redirect_to home_path
-      flash[:success] = " Ton Gossip a bien été ajouté !"
+      
     else
       flash[:danger] = "Erreur : ton formulaire n'etait pas correct. Le titre ne doit pas faire moins de 3 chars ou plus de 14 ! Et il doit y avoir un contenu !"
       render 'new'
@@ -30,6 +32,9 @@ class GossipsController < ApplicationController
   def show
     @gossip = Gossip.find(params[:id])
     @comments = @gossip.comments.order(created_at: :desc).all
+    @likers =[]
+    @gossip.likes.each { |like| @likers<< like.user }
+
   end
 
   def update

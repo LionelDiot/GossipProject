@@ -7,11 +7,21 @@
         <p>Derniere modification le <%= @gossip.updated_at.strftime('%d %B %Y à %Hh%M') %></p>
         <p>Par : <%= link_to @gossip.user.first_name + " " +@gossip.user.last_name, "/user/#{@gossip.user.id}", style: ' color: white;'%></p>
         <p> Dans la ville de : <%= link_to @gossip.user.city.name, "/cities/#{@gossip.user.city.id}", style: ' color: white;'%> </p>
+        <p> Ce gossip a été liké <%= @likers.count %> fois</p>
       </div>
       <div class="container ">
         <h3 class="d-flex">
-          <%= link_to "Modifier le Gossip", edit_gossip_path(@gossip), class: "btn btn-primary text-center m-3 mr-2 border" %>
-          <%= button_to "Supprimer le Gossip", gossip_path(@gossip), method: :delete, class: "btn btn-danger text-center m-3 mr-2 border", onclick: "return confirm('Êtes-vous sûr de vouloir supprimer ce gossip ?');" %>
+          <% if current_user == @gossip.user %>
+            <%= link_to "Modifier le Gossip", edit_gossip_path(@gossip), class: "btn btn-primary text-center m-3 mr-2 border" %>
+            <%= button_to "Supprimer le Gossip", gossip_path(@gossip), method: :delete, class: "btn btn-danger text-center m-3 mr-2 border", onclick: "return confirm('Êtes-vous sûr de vouloir supprimer ce gossip ?');" %>
+          <% end %>
+          <% if current_user %>
+            <% if @gossip.likes.exists?(user_id: current_user.id) %>
+              <%= button_to "Unlike", gossip_like_path(@gossip), method: :delete, class: "btn btn-danger text-center m-3 mr-2 border", data: { turbo_method: "delete" } %>
+            <% else %>
+              <%= button_to "Like", gossip_likes_path(@gossip), method: :post, class: "btn btn-primary text-center m-3 mr-2 border" %>
+            <% end %>
+          <% end %>
         </h3>
       </div>
     </div> 
@@ -31,8 +41,10 @@
       <div class="card-body text-center ">
         <p class="card-text"><%= comment.content %></p>
         <div class="d-inline-block">
+          
           <%= link_to 'Modifier', edit_gossip_comment_path(@gossip, comment), class: 'btn btn-primary me-2 text-center m-3 mr-2 border' %>
-          <%= link_to 'Supprimer', [comment.gossip, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger text-center m-3 mr-2 border' %>
+          <%= link_to 'Supprimer', [comment.gossip, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger text-center m-3 mr-2 border', data: { turbo_method: "delete" } %>
+          
         </div>
       </div>
     </div>

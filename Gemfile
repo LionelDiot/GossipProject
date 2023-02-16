@@ -75,3 +75,4 @@ group :test do
 end
 gem 'faker'
 gem 'table_print'
+gem 'bcrypt'
