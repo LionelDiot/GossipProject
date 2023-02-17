@@ -12,7 +12,7 @@
       <div class="container ">
         <h3 class="d-flex">
           <% if current_user == @gossip.user %>
-            <%= link_to "Modifier le Gossip", edit_gossip_path(@gossip), class: "btn btn-primary text-center m-3 mr-2 border" %>
+            <%= link_to "Modifier le Gossip", edit_gossip_path(@gossip), class: "btn btn-primary text-center ml-0 m-3 mr-2 border" %>
             <%= button_to "Supprimer le Gossip", gossip_path(@gossip), method: :delete, class: "btn btn-danger text-center m-3 mr-2 border", onclick: "return confirm('Êtes-vous sûr de vouloir supprimer ce gossip ?');" %>
           <% end %>
           <% if current_user %>

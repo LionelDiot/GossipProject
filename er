@@ -1,0 +1,22 @@
+
+[1mFrom:[0m /home/lionel/dossierlinux/Fullstack/Week3/Day1/gossip_project/app/controllers/sessions_controller.rb:7 SessionsController#create:
+
+     [1;34m2[0m: [32mdef[0m [1;34mcreate[0m
+     [1;34m3[0m:   [1;34m# cherche s'il existe un utilisateur en base avec l’e-mail[0m
+     [1;34m4[0m:   
+     [1;34m5[0m:   user = [1;34;4mUser[0m.find_by([35memail[0m: params[[33m:email[0m])
+     [1;34m6[0m:   puts user
+ =>  [1;34m7[0m:   binding.pry
+     [1;34m8[0m:   [1;34m# on vérifie si l'utilisateur existe bien ET si on arrive à l'authentifier (méthode bcrypt) avec le mot de passe [0m
+     [1;34m9[0m:   [32mif[0m user && user.authenticate(params[[33m:password[0m])
+    [1;34m10[0m:     log_in user
+    [1;34m11[0m:     remember(user)
+    [1;34m12[0m:     [1;34m# redirige où tu veux, avec un flash ou pas[0m
+    [1;34m13[0m:     flash.now[[33m:success[0m] = [31m[1;31m'[0m[31mConnection réussi ![1;31m'[0m[31m[0m
+    [1;34m14[0m:     redirect_to home_path
+    [1;34m15[0m:   [32melse[0m
+    [1;34m16[0m:     flash.now[[33m:danger[0m] = [31m[1;31m'[0m[31mTon mot de passe ou ton email est incorrect[1;31m'[0m[31m[0m
+    [1;34m17[0m:     render [31m[1;31m'[0m[31mnew[1;31m'[0m[31m[0m, [35mstatus[0m: [33m:unprocessable_entity[0m
+    [1;34m18[0m:   [32mend[0m
+    [1;34m19[0m: [32mend[0m
+

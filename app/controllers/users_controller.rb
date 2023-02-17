@@ -31,18 +31,19 @@ class UsersController < ApplicationController
   end
   def create
     user_params["city_id"] = user_params["city_id"].to_i
-    @user = User.new(user_params)
+    user = User.new(user_params)
     
     
 
-    if @user.save
-      log_in @user
+    if user.save
+      log_in user
+      remember(user)
       flash[:success] = " Ton profil a bien été créé !"
       redirect_to home_path
       
     else
       flash[:danger] = "Erreur : ton formulaire n'etait pas correct. Essaie encore"
-      logger.error @user.errors.inspect
+      logger.error user.errors.inspect
       render 'new', status: :unprocessable_entity
     end
   end

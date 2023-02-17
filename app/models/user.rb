@@ -15,4 +15,9 @@ class User < ApplicationRecord
   has_many :gossips, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_secure_password
+
+  def remember(remember_token)
+    remember_digest2 = BCrypt::Password.create(remember_token)
+    self.update(remember_digest: remember_digest2)
+  end
 end

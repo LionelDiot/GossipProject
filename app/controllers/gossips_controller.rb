@@ -1,5 +1,6 @@
 class GossipsController < ApplicationController
   before_action :authenticate_user, only: [:new, :create, :destroy, :edit, :update]
+  before_action :owner?, only: [:destroy, :edit, :update]
   def create
     
     @gossip = Gossip.new(title: params[:title], content: params[:content], user: current_user)
@@ -50,7 +51,13 @@ class GossipsController < ApplicationController
 
   
   private
-  
+  def owner?
+    @gossip = Gossip.find(params[:id])
+    unless current_user == @gossip.user
+      flash[:danger] = "Impossible vous n'êtes pas le propriétaire du gossip !"
+      redirect_to home_path
+    end
+  end
   def gossip_params
     params.require(:gossip).permit(:title, :content)
   end

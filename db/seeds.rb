@@ -20,6 +20,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!('tags')
 Like.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('likes')
 
+
 def generate_title
   title = Faker::Movie.title
   while title.length < 3 || title.length > 14
@@ -55,6 +56,7 @@ default_user = User.create!(
     city: City.all.sample,
     password: "123456"
   )
+  
 end
 
 20.times do 
