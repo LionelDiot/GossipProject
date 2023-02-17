@@ -33,7 +33,7 @@
   </div>
   <div class="form-group">
     <%= form.label :city_id, "City", class: "m-2" %><br>
-    <%= form.collection_select :city_id, City.all, :id, :name, {}, { class: 'form-control' } %>
+    <%= form.collection_select :city_id, @cities, :id, :name, {}, { class: 'form-control' } %>
   </div>
   <%= form.submit "Créer ton profil", class: "btn btn-primary m-2" %>
 <% end %>

@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     if @comment.update(content: params[:comment][:content])
       redirect_to @comment.gossip, notice: "Le commentaire a été modifié avec succès!"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
   

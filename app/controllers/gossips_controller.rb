@@ -11,7 +11,7 @@ class GossipsController < ApplicationController
       
     else
       flash[:danger] = "Erreur : ton formulaire n'etait pas correct. Le titre ne doit pas faire moins de 3 chars ou plus de 14 ! Et il doit y avoir un contenu !"
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
     
@@ -44,7 +44,7 @@ class GossipsController < ApplicationController
       redirect_to gossip_path(@gossip)
     else
       flash[:danger] = "Erreur : ton formulaire n'était pas correct. Le titre ne doit pas faire moins de 3 chars ou plus de 14 ! Et il doit y avoir un contenu !"
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
 

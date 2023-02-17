@@ -23,9 +23,10 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :city, "City", class: "m-2" %><br>
-    <%= f.collection_select :city, City.all, :id, :name, {}, { class: 'form-control' } %>
+    <%= f.label :city_id, "City", class: "m-2" %><br>
+    <%= f.collection_select :city_id, @cities, :id, :name, { prompt: true }, { class: 'form-control' } %>
   </div>
+  
 
    <div class="form-group ">
     <%= f.label :description, "Ta description", class: "m-2" %>

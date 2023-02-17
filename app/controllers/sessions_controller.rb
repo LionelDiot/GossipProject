@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to home_path
     else
       flash.now[:danger] = 'Ton mot de passe ou ton email est incorrect'
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
   
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       redirect_to home_path
     else 
       flash.now[:danger] = "La déconnection n'a pas marché comme prévu"
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
   
